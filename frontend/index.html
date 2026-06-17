@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect - Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="#home" aria-label="CampusConnect home">
+            <span class="brand-mark">CC</span>
+            <span>CampusConnect</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+            <button class="nav-button" type="button" data-public-target="home">Home</button>
+            <button class="nav-button" type="button" data-auth-mode="register">Register</button>
+            <button class="nav-button" type="button" data-auth-mode="login">Login</button>
+            <button class="nav-button nav-button-primary hidden" id="navPortalButton" type="button" data-portal-page="profilePage">Portal</button>
+        </nav>
+    </header>
+
+    <main>
+        <div id="publicContent">
+            <section class="hero-section" id="home">
+                <div class="hero-copy">
+                    <p class="eyebrow">Student portal</p>
+                    <h1>CampusConnect - Student Portal</h1>
+                    <p class="hero-text">
+                        Register, login, view your profile, update account details, browse courses, and manage your password from one modern college portal.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="primary-button" type="button" data-auth-mode="register">Register</button>
+                        <button class="secondary-button" type="button" data-auth-mode="login">Login</button>
+                    </div>
+                </div>
+
+                <div class="campus-card" aria-label="CampusConnect overview">
+                    <div class="campus-card-top">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="student-badge">Campus ID</div>
+                    <div class="campus-stat-grid">
+                        <div>
+                            <strong>Profile</strong>
+                            <span>Ready</span>
+                        </div>
+                        <div>
+                            <strong>Courses</strong>
+                            <span>Open</span>
+                        </div>
+                    </div>
+                    <div class="campus-lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="auth-section" id="auth">
+                <div class="section-heading">
+                    <p class="eyebrow">Get started</p>
+                    <h2>Register or login</h2>
+                    <p>Create your student account or sign in to open the CampusConnect portal.</p>
+                </div>
+
+                <div class="auth-card">
+                    <div class="auth-tabs" role="tablist" aria-label="Authentication forms">
+                        <button class="tab-button active" type="button" role="tab" aria-selected="true" data-auth-mode="register">Register</button>
+                        <button class="tab-button" type="button" role="tab" aria-selected="false" data-auth-mode="login">Login</button>
+                    </div>
+
+                    <form class="form-grid auth-form active" id="registerForm">
+                        <label for="registerName">Name</label>
+                        <input id="registerName" name="name" type="text" placeholder="Enter full name" autocomplete="name" required>
+
+                        <label for="registerEmail">Email</label>
+                        <input id="registerEmail" name="email" type="email" placeholder="student@college.edu" autocomplete="email" required>
+
+                        <label for="registerPassword">Password</label>
+                        <input id="registerPassword" name="password" type="password" placeholder="Create password" autocomplete="new-password" required>
+
+                        <label for="registerCourse">Course</label>
+                        <input id="registerCourse" name="course" type="text" placeholder="Computer Science" autocomplete="off" required>
+
+                        <button class="primary-button full-width" type="submit">Create Student Account</button>
+                    </form>
+
+                    <form class="form-grid auth-form" id="loginForm">
+                        <label for="loginEmail">Email</label>
+                        <input id="loginEmail" name="email" type="email" placeholder="student@college.edu" autocomplete="email" required>
+
+                        <label for="loginPassword">Password</label>
+                        <input id="loginPassword" name="password" type="password" placeholder="Enter password" autocomplete="current-password" required>
+
+                        <button class="primary-button full-width" type="submit">Login to Portal</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <section class="portal-app hidden" id="portalApp">
+            <aside class="portal-menu" aria-label="CampusConnect portal menu">
+                <div class="portal-student">
+                    <span>Logged in</span>
+                    <strong id="menuStudentName">Student</strong>
+                    <small id="menuStudentId">ID: -</small>
+                </div>
+
+                <button class="portal-menu-button" type="button" data-portal-page="registerPage">Register</button>
+                <button class="portal-menu-button" type="button" data-portal-page="loginPage">Login</button>
+                <button class="portal-menu-button active" type="button" data-portal-page="profilePage">View Profile</button>
+                <button class="portal-menu-button" type="button" data-portal-page="updatePage">Update Profile</button>
+                <button class="portal-menu-button" type="button" data-portal-page="coursesPage">View Courses</button>
+                <button class="portal-menu-button" type="button" data-portal-page="passwordPage">Change Password</button>
+                <button class="portal-menu-button danger" type="button" id="logoutButton">Logout</button>
+            </aside>
+
+            <div class="portal-content">
+                <section class="portal-page" id="registerPage">
+                    <div class="page-heading">
+                        <p class="eyebrow">New account</p>
+                        <h2>Register Student</h2>
+                        <p>Add a new CampusConnect student record.</p>
+                    </div>
+
+                    <form class="form-grid page-form" id="portalRegisterForm">
+                        <label for="portalRegisterName">Name</label>
+                        <input id="portalRegisterName" name="name" type="text" placeholder="Enter full name" autocomplete="name" required>
+
+                        <label for="portalRegisterEmail">Email</label>
+                        <input id="portalRegisterEmail" name="email" type="email" placeholder="student@college.edu" autocomplete="email" required>
+
+                        <label for="portalRegisterPassword">Password</label>
+                        <input id="portalRegisterPassword" name="password" type="password" placeholder="Create password" autocomplete="new-password" required>
+
+                        <label for="portalRegisterCourse">Course</label>
+                        <input id="portalRegisterCourse" name="course" type="text" placeholder="Computer Science" autocomplete="off" required>
+
+                        <button class="primary-button full-width" type="submit">Register Student</button>
+                    </form>
+                </section>
+
+                <section class="portal-page" id="loginPage">
+                    <div class="page-heading">
+                        <p class="eyebrow">Switch account</p>
+                        <h2>Login</h2>
+                        <p>Login again to switch the active student session.</p>
+                    </div>
+
+                    <form class="form-grid page-form" id="portalLoginForm">
+                        <label for="portalLoginEmail">Email</label>
+                        <input id="portalLoginEmail" name="email" type="email" placeholder="student@college.edu" autocomplete="email" required>
+
+                        <label for="portalLoginPassword">Password</label>
+                        <input id="portalLoginPassword" name="password" type="password" placeholder="Enter password" autocomplete="current-password" required>
+
+                        <button class="primary-button full-width" type="submit">Login</button>
+                    </form>
+                </section>
+
+                <section class="portal-page active" id="profilePage">
+                    <div class="page-heading page-heading-row">
+                        <div>
+                            <p class="eyebrow">Student details</p>
+                            <h2 id="welcomeMessage">Welcome back, Student</h2>
+                            <p>View your profile information from the backend.</p>
+                        </div>
+                        <button class="small-button" type="button" id="refreshProfileButton">Refresh Profile</button>
+                    </div>
+
+                    <div class="profile-details" id="profileDetails" aria-label="Student profile details">
+                        <p>Profile details will appear here.</p>
+                    </div>
+                </section>
+
+                <section class="portal-page" id="updatePage">
+                    <div class="page-heading">
+                        <p class="eyebrow">Edit account</p>
+                        <h2>Update Profile</h2>
+                        <p>Update your name, email, and course.</p>
+                    </div>
+
+                    <form class="form-grid page-form" id="updateProfileForm">
+                        <label for="updateName">Name</label>
+                        <input id="updateName" name="name" type="text" placeholder="Updated name" autocomplete="name" required>
+
+                        <label for="updateEmail">Email</label>
+                        <input id="updateEmail" name="email" type="email" placeholder="updated@college.edu" autocomplete="email" required>
+
+                        <label for="updateCourse">Course</label>
+                        <input id="updateCourse" name="course" type="text" placeholder="Updated course" autocomplete="off" required>
+
+                        <button class="primary-button full-width" type="submit">Save Profile</button>
+                    </form>
+                </section>
+
+                <section class="portal-page" id="coursesPage">
+                    <div class="page-heading page-heading-row">
+                        <div>
+                            <p class="eyebrow">Course catalog</p>
+                            <h2>View Courses</h2>
+                            <p>Browse courses returned from the backend.</p>
+                        </div>
+                        <button class="small-button" type="button" id="refreshCoursesButton">Load Courses</button>
+                    </div>
+
+                    <div class="courses-grid" id="coursesGrid">
+                        <p>Courses will appear here.</p>
+                    </div>
+                </section>
+
+                <section class="portal-page" id="passwordPage">
+                    <div class="page-heading">
+                        <p class="eyebrow">Security</p>
+                        <h2>Change Password</h2>
+                        <p>Update your password securely. Passwords are never shown in the dashboard.</p>
+                    </div>
+
+                    <form class="form-grid page-form" id="changePasswordForm">
+                        <label for="passwordEmail">Email</label>
+                        <input id="passwordEmail" name="email" type="email" placeholder="student@college.edu" autocomplete="email" required>
+
+                        <label for="oldPassword">Old Password</label>
+                        <input id="oldPassword" name="oldPassword" type="password" placeholder="Current password" autocomplete="current-password" required>
+
+                        <label for="newPassword">New Password</label>
+                        <input id="newPassword" name="newPassword" type="password" placeholder="New password" autocomplete="new-password" required>
+
+                        <button class="primary-button full-width" type="submit">Change Password</button>
+                    </form>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
